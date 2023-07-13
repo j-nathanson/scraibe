@@ -1,0 +1,41 @@
+# @url = http://localhost:8080/courses
+
+@url = http://18.118.122.152:8080/courses
+
+### get all courses
+GET {{url}} HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODM3MTN9.XwglYG-rN-676ImEvgSujl7ruT6syy5BK8zelreEvo4
+
+### get course by course id
+GET {{url}}/2 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwNzI4MjB9.zzDntP5R6ysbZWG4hoc8aTDRXflGA17b036xbQ8gIPI
+
+### get courses by user id
+GET {{url}}/from-user/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODM3MTN9.XwglYG-rN-676ImEvgSujl7ruT6syy5BK8zelreEvo4
+
+### create a new course
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwNzI4MjB9.zzDntP5R6ysbZWG4hoc8aTDRXflGA17b036xbQ8gIPI
+
+
+{
+    "name": "English",
+    "userId": 2
+}
+
+### edit a course
+PUT {{url}}/4 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwNzI4MjB9.zzDntP5R6ysbZWG4hoc8aTDRXflGA17b036xbQ8gIPI
+
+{
+    "courseId": 4,
+    "name": "English 101",
+    "userId": 2
+}
+
+### delete a course
+DELETE {{url}}/4 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwNzI4MjB9.zzDntP5R6ysbZWG4hoc8aTDRXflGA17b036xbQ8gIPI

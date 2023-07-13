@@ -1,0 +1,66 @@
+@base_url = http://localhost:8080/generate-completion
+
+
+### simple request
+POST {{base_url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
+
+{
+    "noteId":0,
+    "content": "chips, beer, choclate, apples",
+    "date":null,
+    "courseId":null,
+    "user":null
+}
+
+### slightly more complicated
+POST {{base_url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
+
+
+{
+    "noteId":0,
+    "content":"Industrial Revolution: 18th-19th century. Shift from agrarian to industrial society. Factors: technological advancements, urbanization, rise of factories. Impact: transformed economy, social structure, and living conditions.",
+    "date":null,
+    "courseId":null,
+    "user":null
+}
+
+
+
+### large req
+POST {{base_url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
+
+{
+    "noteId":0,
+    "content": "The Industrial Revolution marked a significant shift in human history, characterized by the transition from agrarian economies to industrialized societies. It began in the 18th century in Britain and later spread to Europe, North America, and beyond. Factors such as technological advancements, urbanization, and improved transportation fueled this revolution. It led to the rise of factories, mass production, and the growth of cities. Social and economic changes accompanied this era, including the emergence of the working class and the division of labor. The Industrial Revolution played a pivotal role in shaping modern society and setting the stage for subsequent advancements in science, technology, and globalization.",
+    "date":null,
+    "courseId":null,
+    "user":null
+}
+
+
+
+###bad request
+POST {{base_url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
+
+{
+    "noteId":0,
+    "content": null,
+    "date":null,
+    "courseId":null,
+    "user":null
+}
+
+
+

@@ -1,0 +1,121 @@
+@base_url = http://localhost:8080/security
+
+### creates an account and uses username and password to generate a jwt
+POST {{base_url}}/create-account HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"johnsmith99",
+    "email":"john@smith.com",
+    "password":"P@ssw0rd!"
+}
+
+### shouldNotCreateAccountMissingUsername
+POST {{base_url}}/create-account HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"",
+    "email":"john@smith.com",
+    "password":"P@ssw0rd!"
+}
+
+### shouldNotCreateAccountMissingEmail
+POST {{base_url}}/create-account HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"johnsmith99",
+    "email":"",
+    "password":"P@ssw0rd!"
+}
+
+### shouldNotCreateAccountMissingPassword
+POST {{base_url}}/create-account HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"johnsmith99",
+    "email":"john@smith.com",
+    "password":""
+}
+
+### should authenticate by username
+POST {{base_url}}/authenticate-username HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"johnsmith99",
+    "password":"P@ssw0rd!"
+}
+
+### should Not authenticate by unknown username
+POST {{base_url}}/authenticate-username HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"fakeUserName",
+    "password":"P@ssw0rd!"
+}
+
+
+
+### should authenticate by email
+POST {{base_url}}/authenticate-email HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"john@smith.com",
+    "password":"P@ssw0rd!"
+}
+
+
+### should not authenticate by fake email
+POST {{base_url}}/authenticate-email HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"fake@email.com",
+    "password":"P@ssw0rd!"
+}
+
+###authenticate-username admin
+POST {{base_url}}/authenticate-username HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"teacher123",
+    "password":"P@ssw0rd!"
+}
+
+
+### should refresh token NEEDS A NEW TOKEN
+POST {{base_url}}/refresh-token HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwNzE1NDJ9.8oOgXzkQWSzCVIcl2kI14UwAL-MTlYgluIjCu12BVOY
+
+{
+    "appUserId":4,
+    "username":"johnSmith99",
+    "password":null,
+    "enabled":true,
+    "courses":null,
+    "authorities": ["user"]
+}
+
+### should not refresh token without a token
+POST {{base_url}}/refresh-token HTTP/1.1
+Content-Type: application/json
+
+{
+    "appUserId":4,
+    "username":"johnSmith99",
+    "password":null,
+    "enabled":true,
+    "courses":null,
+    "authorities": ["user"]
+}
+
+
+
+

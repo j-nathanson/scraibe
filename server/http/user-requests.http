@@ -1,0 +1,51 @@
+### note GET "/users", "/get-email", "/get-username" is only accessable by admin
+@url = http://localhost:8080/users
+
+### get all users, admin only
+GET {{url}} HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJ0ZWFjaGVyMTIzIiwiYXBwX3VzZXJfaWQiOjMsImF1dGhvcml0aWVzIjoiYWRtaW4iLCJleHAiOjE2ODgwNzIwNTV9.Fz3ql7O6nwXng01vNhwdyFGmYzCK9YrzIPyZ5sdoDbs
+
+### should not get all users with a "user" privilege 
+GET {{url}} HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwNzIxMzB9.DozP5KL0tccw82DeajlcdQ1YoarUMNcOvcHkYYp_3u0
+
+### get a user by email, admin only
+GET {{url}}/get-email/justbob@aol.com HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJ0ZWFjaGVyMTIzIiwiYXBwX3VzZXJfaWQiOjMsImF1dGhvcml0aWVzIjoiYWRtaW4iLCJleHAiOjE2ODgwNzI2MjF9.AhrLtjJsHZzPDwoN0h2MGf8mfzyTipGm1JAGliLNSFc
+
+### get a user by username, admin only
+GET {{url}}/get-username/justbob HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJ0ZWFjaGVyMTIzIiwiYXBwX3VzZXJfaWQiOjMsImF1dGhvcml0aWVzIjoiYWRtaW4iLCJleHAiOjE2ODgwNzI2MjF9.AhrLtjJsHZzPDwoN0h2MGf8mfzyTipGm1JAGliLNSFc
+
+###
+
+# Not currently working, updateRoles in repo fails
+PUT {{url}}/edit/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "appUserId": 2,
+    "username": "justbobby",
+    "email": "justbob@aol.com",
+    "password": "$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa",
+    "enabled": true,
+    "courses": [
+        {
+        "courseId": 2,
+        "name": "English",
+        "notes": null,
+        "userId": 0
+        }
+    ],
+    "accountNonExpired": true,
+    "accountNonLocked": true,
+    "credentialsNonExpired": true
+}
+
+### delete a user, admin only
+DELETE {{url}}/delete/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJ0ZWFjaGVyMTIzIiwiYXBwX3VzZXJfaWQiOjMsImF1dGhvcml0aWVzIjoiYWRtaW4iLCJleHAiOjE2ODgwNzI2MjF9.AhrLtjJsHZzPDwoN0h2MGf8mfzyTipGm1JAGliLNSFc
+
+### should not delete a user with a "user" privilege 
+DELETE {{url}}/delete/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwNzI1OTJ9.jPjKbKfnK1SHAnDiG8WCH4ytv3pMHMcmnLyorV0yhWY

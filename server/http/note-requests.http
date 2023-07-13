@@ -1,0 +1,94 @@
+@url = http://localhost:8080/notes
+
+###getAll
+GET {{url}} HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
+
+###getByNoteId
+GET {{url}}/3 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQyNTN9.57R9nLyh30KoaluAlUOx1UmRrQWfY_V2hz5ryokssc4
+
+###shouldNotGetByNoteId
+GET {{url}}/100 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQyNTN9.57R9nLyh30KoaluAlUOx1UmRrQWfY_V2hz5ryokssc4
+
+###shouldGetNotesByCourseId
+GET {{url}}/from-course/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
+###shouldNotGetNotesByInvalidCourseId
+GET {{url}}/from-course/1000
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
+###addNote
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
+{
+    "noteId": 0,
+    "title": "Intermediate Spanish",
+    "content": "past tense conjugations note",
+    "date": "2023-01-01",
+    "courseId": 1,
+    "userId": 1
+}
+
+###shouldNotAddNote
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
+
+{
+    "noteId": 0,
+    "title": "",
+    "content": "past tense conjugations note",
+    "date": "2024-01-01",
+    "courseId": 1,
+    "userId": 1
+}
+
+###editNote
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
+
+{
+    "noteId": 1,
+    "title": "Beginner Spanish",
+    "content": "past tense conjugations note",
+    "date": "2023-02-02",
+    "courseId": 1,
+    "userId": 1
+}
+
+###shouldNotEditNote
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
+
+{
+    "noteId": 1,
+    "title": "",
+    "content": "",
+    "date": "",
+    "courseId": 0,
+    "userId": 0 
+}
+
+###deleteNote
+DELETE {{url}}/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
+
+
+###shouldNotDeleteNote
+DELETE {{url}}/100 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY3JpYmUiLCJzdWIiOiJqb2huc21pdGg5OSIsImFwcF91c2VyX2lkIjo0LCJhdXRob3JpdGllcyI6InVzZXIiLCJleHAiOjE2ODgwODQ0NjZ9.3lQb2ElDy_Qoa8R41DBSQB_CqqeSkpMpRlknj5BWHz0
+
