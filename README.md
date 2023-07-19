@@ -2,6 +2,8 @@
 
 This product uses Chat GPT 3.5 Turbo model to organize notes into concise clear points.
 
+![Example Image](./planning/example.png)
+
 [Live Site](http://scraibeclient.s3-website.us-east-2.amazonaws.com/)
 
 
